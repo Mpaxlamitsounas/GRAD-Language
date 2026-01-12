@@ -1,0 +1,37 @@
+STATEMENT = VARIABLE | ALIAS | INSTRUCTION ;
+
+VARIABLE    = "VAR " , IDENTIFIER ;
+ALIAS       = IDENTIFIER , ":", ( IDENTIFIER | POSITIVE_NUMBER ) ;
+INSTRUCTION = A_INSTRUCTION | C_INSTRUCTION | JUMP_LABEL_INSTRUCTION ;
+
+A_INSTRUCTION          = "@", ( IDENTIFIER | POSITIVE_NUMBER ) ;
+C_INSTRUCTION          = C_DESTINATION_PART , C_OPERATION_PART , C_JUMP_PART ;
+JUMP_LABEL_INSTRUCTION = "(" , IDENTIFIER , ")" ;
+
+C_DESTINATION_PART = [ DESTINATION_SET , ":=" ] ;
+DESTINATION_SET    = OPERAND , { "," , OPERAND } ;
+
+C_OPERATION_PART = OPERAND | UNARY_OPERATION | BINARY_OPERATION ;
+UNARY_OPERATION  = UNARY_OP_SYMBOL , OPERAND | "|" , OPERAND , "|" ;
+BINARY_OPERATION = OPERAND , BINARY_OP_SYMBOL , OPERAND ;
+UNARY_OP_SYMBOL  = "~" | "-" | "_/" ;
+BINARY_OP_SYMBOL = "&" | "|" | "+" | "-" | "*" | "/" | "%" | "^" ; 
+
+C_JUMP_PART = [ ";" , [ [ "IF" ] , CONDITION , OPERAND ] , "JMP" , [ IDENTIFIER ] ] ;
+CONDITION   = ">" | "==" | ">=" | "<" | "!=" | "<=" ;
+
+IDENTIFIER   = ( DIGIT | LETTER ) , { DIGIT | LETTER } ;
+OPERAND      = IDENTIFIER | REGISTERS ;
+REGISTERS    = "A" | "D" | MEMORY ;
+MEMORY       = "M" , [ MEMORY_INDEX ] ;
+MEMORY_INDEX = "[" , ( IDENTIFIER | "M" , MEMORY_INDEX ) , "]" ;
+
+POSITIVE_NUMBER = DIGIT , { DIGIT } ;
+
+DIGIT  = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+LETTER = "A" | "B" | "C" | "D" | "E" | "F" | "G"
+       | "H" | "I" | "J" | "K" | "L" | "M" | "N"
+       | "O" | "P" | "Q" | "R" | "S" | "T" | "U"
+       | "V" | "W" | "X" | "Y" | "Z" ;
+       
+
