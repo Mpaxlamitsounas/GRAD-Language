@@ -15,7 +15,7 @@ C_OPERATION_PART = OPERAND | UNARY_OPERATION | BINARY_OPERATION ;
 UNARY_OPERATION  = UNARY_OP_SYMBOL , OPERAND | "|" , OPERAND , "|" ;
 BINARY_OPERATION = OPERAND , BINARY_OP_SYMBOL , OPERAND ;
 UNARY_OP_SYMBOL  = "~" | "-" | "_/" ;
-BINARY_OP_SYMBOL = "&" | "|" | "+" | "-" | "*" | "/" | "%" | "^" ; 
+BINARY_OP_SYMBOL = "&" | "|" | "+" | "-" | "*" | "/" | "%" | "^" ;
 
 C_JUMP_PART = [ ";" , [ [ "IF" ] , CONDITION , OPERAND ] , "JMP" , [ IDENTIFIER ] ] ;
 CONDITION   = ">" | "==" | ">=" | "<" | "!=" | "<=" ;
@@ -33,5 +33,3 @@ LETTER = "A" | "B" | "C" | "D" | "E" | "F" | "G"
        | "H" | "I" | "J" | "K" | "L" | "M" | "N"
        | "O" | "P" | "Q" | "R" | "S" | "T" | "U"
        | "V" | "W" | "X" | "Y" | "Z" ;
-       
-
