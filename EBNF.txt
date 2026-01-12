@@ -1,8 +1,9 @@
-STATEMENT = VARIABLE | ALIAS | INSTRUCTION ;
+STATEMENT = VARIABLE | ALIAS | INSTRUCTION | COMMENT | ε;
 
 VARIABLE    = "VAR " , IDENTIFIER ;
 ALIAS       = IDENTIFIER , ":", ( IDENTIFIER | POSITIVE_NUMBER ) ;
 INSTRUCTION = A_INSTRUCTION | C_INSTRUCTION | JUMP_LABEL_INSTRUCTION ;
+COMMENT     = "//" , { IDENTIFIER_CHARSET | LOWERCASE_LETTER | " " } ;
 
 A_INSTRUCTION          = "@", ( IDENTIFIER | POSITIVE_NUMBER ) ;
 C_INSTRUCTION          = C_DESTINATION_PART , C_OPERATION_PART , C_JUMP_PART ;
@@ -20,15 +21,19 @@ BINARY_OP_SYMBOL = "&" | "|" | "+" | "-" | "*" | "/" | "%" | "^" ;
 C_JUMP_PART = [ ";" , [ [ "IF" ] , CONDITION , OPERAND ] , "JMP" , [ IDENTIFIER ] ] ;
 CONDITION   = ">" | "==" | ">=" | "<" | "!=" | "<=" ;
 
-IDENTIFIER   = ( DIGIT | LETTER | "_" ) , { DIGIT | LETTER | "_" } ;
+IDENTIFIER   = IDENTIFIER_CHARSET , { IDENTIFIER_CHARSET } ;
 OPERAND      = IDENTIFIER | REGISTERS ;
 REGISTERS    = "A" | "D" | MEMORY ;
 MEMORY       = "M" , [ MEMORY_INDEX ] ;
 MEMORY_INDEX = "[" , ( IDENTIFIER | "M" , MEMORY_INDEX ) , "]" ;
 
 POSITIVE_NUMBER = DIGIT , { DIGIT } ;
+IDENTIFIER_CHARSET = DIGIT | UPPERCASE_LETTER | "_" ;
 
-DIGIT  = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
-LETTER = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J"
-       | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T"
-       | "U" | "V" | "W" | "X" | "Y" | "Z" ;
+DIGIT            = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+UPPERCASE_LETTER = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J"
+                 | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T"
+                 | "U" | "V" | "W" | "X" | "Y" | "Z" ;
+LOWERCASE_LETTER = "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j"
+                 | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t"
+                 | "u" | "v" | "w" | "x" | "y" | "z" ;
