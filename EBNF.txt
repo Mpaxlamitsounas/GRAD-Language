@@ -20,7 +20,7 @@ BINARY_OP_SYMBOL = "&" | "|" | "+" | "-" | "*" | "/" | "%" | "^" ;
 C_JUMP_PART = [ ";" , [ [ "IF" ] , CONDITION , OPERAND ] , "JMP" , [ IDENTIFIER ] ] ;
 CONDITION   = ">" | "==" | ">=" | "<" | "!=" | "<=" ;
 
-IDENTIFIER   = ( DIGIT | LETTER ) , { DIGIT | LETTER } ;
+IDENTIFIER   = ( DIGIT | LETTER | "_" ) , { DIGIT | LETTER | "_" } ;
 OPERAND      = IDENTIFIER | REGISTERS ;
 REGISTERS    = "A" | "D" | MEMORY ;
 MEMORY       = "M" , [ MEMORY_INDEX ] ;
@@ -29,7 +29,6 @@ MEMORY_INDEX = "[" , ( IDENTIFIER | "M" , MEMORY_INDEX ) , "]" ;
 POSITIVE_NUMBER = DIGIT , { DIGIT } ;
 
 DIGIT  = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
-LETTER = "A" | "B" | "C" | "D" | "E" | "F" | "G"
-       | "H" | "I" | "J" | "K" | "L" | "M" | "N"
-       | "O" | "P" | "Q" | "R" | "S" | "T" | "U"
-       | "V" | "W" | "X" | "Y" | "Z" ;
+LETTER = "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J"
+       | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T"
+       | "U" | "V" | "W" | "X" | "Y" | "Z" ;
