@@ -1,0 +1,6 @@
+DEV_OUT_0 := 1
+
+(START_LOOP)
+D := D + 1
+DEV_OUT_0 := DEV_OUT_0 * D
+D; JMP START_LOOP
