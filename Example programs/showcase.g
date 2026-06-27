@@ -5,9 +5,9 @@ STOP_VAL:0x275
 VAR INPUT_VALUE
 
 (START_LOOP)
-    // Value to be written
+    // Read from 1st input device, this is the value to be written
     INPUT_VALUE := DEV_IN_0; IF == STOP_VAL JMP END
-    // DEV_IN_1 == M[Input device 1] === Address to write value to
+    // Write to address specified from user, M[DEV_IN_1] == M[M[Address of 2nd device]]
     M[DEV_IN_1] := INPUT_VALUE; JMP START_LOOP
 (END)
 D; JMP END
